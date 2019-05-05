@@ -16,26 +16,39 @@ string empresa::getCnpj(){
 string empresa::getNome(){
     return this -> nome;
 }
-int empresa::adicionarFuncionario(funcionario A){
+bool empresa::adicionarFuncionario(funcionario A){
     for (auto it = this -> listaFuncionarios.begin(); it != this-> listaFuncionarios.end(); ++it){
         if(*it == A){
-            return 1;
+            return true;
         }
     }
     this -> listaFuncionarios.push_back(A);
-    return 0;
+    return false;
 }
-int empresa::removerFuncionario(string cpf){
+bool empresa::removerFuncionario(string cpf){
     for (auto it = this -> listaFuncionarios.begin(); it != this-> listaFuncionarios.end(); ++it){
         if(it -> getCpf() == cpf){
             this -> listaFuncionarios.erase(it);
-            return 0;
+            return false;
         }
     }
-    return 1;
+    return true;
 }
-void empresa::listarTodosFuncionarios(){
-    for (auto it = this -> listaFuncionarios.begin(); it != this-> listaFuncionarios.end(); ++it){
-        cout << *it;
+bool empresa::listarTodosFuncionarios(){
+    if(this -> listaFuncionarios.empty()){
+        return true;
+    }else{
+        for (auto it = this -> listaFuncionarios.begin(); it != this-> listaFuncionarios.end(); ++it){
+          cout << *it;
+        }
+        return false;
+    }
+}
+//implementando operadores
+bool empresa::operator==(empresa A){
+    if (this -> cnpj == A.cnpj){
+        return true;
+    }else{
+        return false;
     }
 }

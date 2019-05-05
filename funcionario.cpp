@@ -8,9 +8,9 @@ void funcionario::setCpf(string novoCpf){
     this -> cpf = novoCpf;
 }
 void funcionario::setAdmisao(int dd, int mm, int aa){
-    this -> data.dia = dd;
-    this -> data.mes = mm;
-    this -> data.ano = aa;
+    this -> dataAdmisao.dia = dd;
+    this -> dataAdmisao.mes = mm;
+    this -> dataAdmisao.ano = aa;
 }
 string funcionario::getNome(){
     return this -> nome;
@@ -19,8 +19,9 @@ string funcionario::getCpf(){
     return this -> cpf;
 }
 ADMISAO funcionario::getAdmisao(){
-    return this -> data;
+    return this -> dataAdmisao;
 }
+
 //implementação dos operadores
 bool funcionario::operator==(funcionario A){
     if (this -> cpf == A.cpf){
@@ -37,6 +38,6 @@ bool funcionario::operator!=(funcionario A){
     }
 }
 ostream & operator << (ostream &out, const funcionario &F){ 
-    out << "Dados Funcionario:\n * Nome: " << F.nome <<"\n * CPF: "<< F.cpf <<"\n * Data de Entrada: "<< F.data.dia<<"/"<<F.data.mes<<"/"<<F.data.ano<<endl;
+    out << "Dados Funcionario:\n * Nome: " << F.nome <<"\n * CPF: "<< F.cpf <<"\n * Data de Entrada: "<< F.dataAdmisao.dia<<"/"<<F.dataAdmisao.mes<<"/"<<F.dataAdmisao.ano<<endl;
     return out; 
 } 

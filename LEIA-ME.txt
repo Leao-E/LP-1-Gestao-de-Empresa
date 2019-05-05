@@ -1,0 +1,1 @@
+Eu mudei "UM POUCO" a organização do código, por isso eu coloquei em um arquivo .zip; Na pasta Teste tem só um código compilado mas não é o mais recente, e na pasta TUDO tem a "versão beta" quando eu tinha colocado tudo em um arquivo só; Dá uma olhada ae e me fala o que tu achou ;)

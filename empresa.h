@@ -21,10 +21,14 @@ public:
     void setNome(string novoNome);
     string getCnpj();
     string getNome();
-    int adicionarFuncionario(funcionario A); //1 -> Erro; 0 -> Sucesso
-    int removerFuncionario(string cpf); //1 -> Erro; 0 -> Sucesso
-    void listarTodosFuncionarios();
+    bool adicionarFuncionario(funcionario A); //1 -> Erro; 0 -> Sucesso
+    bool removerFuncionario(string cpf); //1 -> Erro; 0 -> Sucesso
+    bool listarTodosFuncionarios();
+    //falta só listar funcionarios recentes
+    
     //sobrecarga de operadores
+    bool operator==(empresa A);
+    
     //constructor da classe
     empresa(string nomeInicial, string cnpjInicial){
         this -> nome = nomeInicial;

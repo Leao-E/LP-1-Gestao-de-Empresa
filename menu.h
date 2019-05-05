@@ -7,6 +7,5 @@ using namespace std;
 
 void showMenuCabeca();
 void showMenuPrimario();
-void showMenuSecundario(int i);
 
 #endif
