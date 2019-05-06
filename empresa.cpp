@@ -44,6 +44,16 @@ bool empresa::listarTodosFuncionarios(){
         return false;
     }
 }
+int empresa::listarFuncionariosRecentes(){
+    
+}
+void empresa::aumentarSalario(double porcentagem){
+    double auxSalario;
+    for (auto it = listaFuncionarios.begin(); it != listaFuncionarios.end(); ++it){
+        auxSalario = it -> getSalario();
+        it -> setSalario(auxSalario += auxSalario*(porcentagem/100));
+    }
+}
 //implementando operadores
 bool empresa::operator==(empresa A){
     if (this -> cnpj == A.cnpj){

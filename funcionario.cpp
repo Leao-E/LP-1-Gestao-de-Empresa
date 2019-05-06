@@ -12,6 +12,9 @@ void funcionario::setAdmisao(int dd, int mm, int aa){
     this -> dataAdmisao.mes = mm;
     this -> dataAdmisao.ano = aa;
 }
+void funcionario::setSalario(double novoSalario){
+    this -> salario = novoSalario;
+}
 string funcionario::getNome(){
     return this -> nome;
 }
@@ -20,6 +23,9 @@ string funcionario::getCpf(){
 }
 ADMISAO funcionario::getAdmisao(){
     return this -> dataAdmisao;
+}
+double funcionario::getSalario(){
+    return this -> salario;
 }
 
 //implementação dos operadores
@@ -38,6 +44,6 @@ bool funcionario::operator!=(funcionario A){
     }
 }
 ostream & operator << (ostream &out, const funcionario &F){ 
-    out << "Dados Funcionario:\n * Nome: " << F.nome <<"\n * CPF: "<< F.cpf <<"\n * Data de Entrada: "<< F.dataAdmisao.dia<<"/"<<F.dataAdmisao.mes<<"/"<<F.dataAdmisao.ano<<endl;
+    out << "Dados Funcionario:\n * Nome: " << F.nome <<"\n * CPF: "<< F.cpf <<"\n * Salario: R$"<< F.salario <<"\n * Data de Entrada: "<< F.dataAdmisao.dia<<"/"<<F.dataAdmisao.mes<<"/"<<F.dataAdmisao.ano<<endl;
     return out; 
 } 

@@ -23,6 +23,7 @@ private:
     //objetos da classe
     string nome;
     string cpf;
+    double salario;
     ADMISAO dataAdmisao;
 public:
 
@@ -30,10 +31,12 @@ public:
     void setNome(string novoNome);
     void setCpf(string novoCpf);
     void setAdmisao(int dd, int mm, int aa);
+    void setSalario(double novoSalario);
     string getNome();
     string getCpf();
     ADMISAO getAdmisao();
-    
+    double getSalario();
+
     //sobrecarga de operadores
     bool operator==(funcionario A);
     bool operator!=(funcionario A);
@@ -43,9 +46,10 @@ public:
     funcionario(){
         //constructor default
     }
-    funcionario(string nomeInicial, string cpfInicial, int diaInicial, int mesInicial, int anoInicial){
+    funcionario(string nomeInicial, string cpfInicial, double salarioInicial, int diaInicial, int mesInicial, int anoInicial){
         this -> nome = nomeInicial;
         this -> cpf = cpfInicial;
+        this -> salario = salarioInicial;
         this -> dataAdmisao.dia = diaInicial;
         this -> dataAdmisao.mes = mesInicial;
         this -> dataAdmisao.ano = anoInicial;

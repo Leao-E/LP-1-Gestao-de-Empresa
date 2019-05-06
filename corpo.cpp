@@ -12,10 +12,11 @@ using namespace std;
 int main(){
     time_t data;
     struct tm *dataTM;
-    int aux1, aux2, aux3, aux4;
+    int aux1, aux2, aux3;
+    double auxSalario;
     string stringAux1, stringAux2, stringAux3;
     empresa auxEmpresa("NONE", "NONE");
-    funcionario auxFuncionario("NONE", "NONE", 0,0,0);
+    funcionario auxFuncionario("NONE", "NONE",0, 0,0,0);
     
     vector <empresa> listaEmpresas;
 
@@ -48,11 +49,11 @@ int main(){
                 }
                 break;
             case 3:
-                cout << "1 - Excluir Empresa\n2 - Adicionar Funcionario\n3 - Remover Funcionario\n4 - Listar Todos os Funcionario\n5 - Listar Funcionarios Recentes\n6 - Voltar\n::";
+                cout << "1 - Excluir Empresa\n2 - Adicionar Funcionario\n3 - Remover Funcionario\n4 - Listar Todos os Funcionario\n5 - Listar Funcionarios Recentes\n6 - Media Funcionarios\n7 - Voltar\n::";
                 cin >> aux2;
                 switch (aux2)
                 {
-                case 1: //escluindo empresa
+                case 1: //excluindo empresa
                     cout << "Entre CNPJ: ";
                     cin.ignore();
                     getline(cin, stringAux1);
@@ -75,7 +76,10 @@ int main(){
                             auxFuncionario.setNome(stringAux2);
                             cout << "Entre CPF: ";
                             getline(cin, stringAux3);
-                            auxFuncionario.setCpf(stringAux3);    
+                            auxFuncionario.setCpf(stringAux3);
+                            cout << "Entre salario: ";
+                            cin >> auxSalario;
+                            auxFuncionario.setSalario(auxSalario);
                             time(&data);
                             dataTM = localtime(&data);
                             auxFuncionario.setAdmisao(dataTM -> tm_mday, dataTM -> tm_mon+1, dataTM -> tm_year+1900);
@@ -135,6 +139,20 @@ int main(){
                     //Listar Recentes                
                     break;
                 case 6:
+                    cout << "Entre CNPJ: ";
+                    cin.ignore();
+                    getline(cin, stringAux1);
+                    cout << "Entre aumento (0 a 100): ";
+                    cin >> auxSalario;
+                    for (auto it = listaEmpresas.begin(); it != listaEmpresas.end(); ++it){
+                        aux3 = 0;
+                        if(it -> getCnpj() == stringAux1){
+                            aux3 = 1;
+                            it -> aumentarSalario(auxSalario);
+                        }
+                    }
+                    break;
+                case 7:
                     break;
                 default:
                     cout << "ERRO: Opcao invalida" << endl;

@@ -24,7 +24,8 @@ public:
     bool adicionarFuncionario(funcionario A); //1 -> Erro; 0 -> Sucesso
     bool removerFuncionario(string cpf); //1 -> Erro; 0 -> Sucesso
     bool listarTodosFuncionarios();
-    //falta só listar funcionarios recentes
+    void aumentarSalario(double porcentagem);
+    int listarFuncionariosRecentes();
     
     //sobrecarga de operadores
     bool operator==(empresa A);
