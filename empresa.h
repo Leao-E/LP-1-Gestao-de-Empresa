@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "funcionario.h"
+#include <time.h>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ public:
     void setNome(string novoNome);
     string getCnpj();
     string getNome();
+    int getTotalFuncionarios();
     bool adicionarFuncionario(funcionario A); //1 -> Erro; 0 -> Sucesso
     bool removerFuncionario(string cpf); //1 -> Erro; 0 -> Sucesso
     bool listarTodosFuncionarios();

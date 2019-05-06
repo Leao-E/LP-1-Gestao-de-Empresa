@@ -9,7 +9,6 @@ bool adicionarEmpresa (vector<empresa> &vector, empresa A){
     vector.push_back(A);
     return false;
 }
-
 bool listarEmpresas (vector<empresa> &vector){
     if (vector.empty()){
         return true;
@@ -19,7 +18,6 @@ bool listarEmpresas (vector<empresa> &vector){
     }
     return false;
 }
-
 bool removerEmpresa (vector<empresa> &vector, string cnpj){
     for(auto it = vector.begin(); it != vector.end(); ++it){
         if (it -> getCnpj() == cnpj){
@@ -28,4 +26,15 @@ bool removerEmpresa (vector<empresa> &vector, string cnpj){
         }
     }
     return true;
+}
+double mediaFuncionarios(vector<empresa> &vector){
+    int totalEmpresas = vector.size(), totalFuncionarios = 0;
+    for(auto it = vector.begin(); it != vector.end(); ++it){
+        totalFuncionarios += it -> getTotalFuncionarios();
+    }
+    if(totalEmpresas == 0){
+        return -1;
+    }else{
+        return (totalFuncionarios/totalEmpresas);
+    }
 }

@@ -10,5 +10,6 @@ using namespace std;
 bool adicionarEmpresa (vector<empresa> &vector, empresa A); //1 -> Erro 0-> OK
 bool removerEmpresa (vector<empresa> &vector, string cnpj);
 bool listarEmpresas (vector<empresa> &vector);
+double mediaFuncionarios(vector<empresa> &vector);
 
 #endif

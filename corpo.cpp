@@ -24,7 +24,7 @@ int main(){
     showMenuCabeca();
     showMenuPrimario();
 
-    while (aux1 != 5)
+    while (aux1 != 6)
     {   
         cin >> aux1;
         switch (aux1)
@@ -35,7 +35,7 @@ int main(){
                 getline(cin, stringAux1);
                 cout << "Entre CNPJ: ";
                 getline(cin, stringAux2);
-                auxEmpresa.empresa::setNome(stringAux1);
+                auxEmpresa.setNome(stringAux1);
                 auxEmpresa.setCnpj(stringAux2);
                 if (adicionarEmpresa(listaEmpresas, auxEmpresa)){
                     cout << "ERRO: CNPJ já existe" << endl;
@@ -48,129 +48,110 @@ int main(){
                     cout << "ERRO: Nenhuma empresa criada" << endl;
                 }
                 break;
-            case 3:
-                cout << "1 - Excluir Empresa\n2 - Adicionar Funcionario\n3 - Remover Funcionario\n4 - Listar Todos os Funcionario\n5 - Listar Funcionarios Recentes\n6 - Media Funcionarios\n7 - Voltar\n::";
-                cin >> aux2;
-                switch (aux2)
-                {
-                case 1: //excluindo empresa
-                    cout << "Entre CNPJ: ";
-                    cin.ignore();
-                    getline(cin, stringAux1);
-                    if(removerEmpresa(listaEmpresas, stringAux1)){
-                        cout << "ERRO: CPNJ inexistente" << endl;
-                    }else{
-                        cout << "Empresa removida com sucesso" << endl;
-                    }
-                    break;
-                case 2: //adicionanado funcionario
-                    cout << "Entre CNPJ: ";
-                    cin.ignore();
-                    getline(cin, stringAux1);
-                    for (auto it = listaEmpresas.begin(); it != listaEmpresas.end(); ++it){
+            case 3: //Entrando no menu secundario
+                cout << "Entre CNPJ: ";
+                getline(cin, stringAux1);
+                //checa se a empresa existe no vector listaEmpresas
+                for (auto it = listaEmpresas.begin(); it != listaEmpresas.end(); ++it){
+                    aux2 = 0;
+                    if (it -> getCnpj() == stringAux1){
+                        aux2 = 1;
                         aux3 = 0;
-                        if (it -> getCnpj() == stringAux1){                
-                            aux3 = 1;
-                            cout << "Entre nome: ";
-                            getline(cin, stringAux2);
-                            auxFuncionario.setNome(stringAux2);
-                            cout << "Entre CPF: ";
-                            getline(cin, stringAux3);
-                            auxFuncionario.setCpf(stringAux3);
-                            cout << "Entre salario: ";
-                            cin >> auxSalario;
-                            auxFuncionario.setSalario(auxSalario);
-                            time(&data);
-                            dataTM = localtime(&data);
-                            auxFuncionario.setAdmisao(dataTM -> tm_mday, dataTM -> tm_mon+1, dataTM -> tm_year+1900);
-                            if(it -> adicionarFuncionario(auxFuncionario)){
-                                cout << "ERRO: CPF ja cadastrado" << endl;
-                            }else{
-                                cout << "Funcionario cadastrado com sucesso" << endl;
-                            }                            
-                            break;
-                        }
-                    }
-                    if(aux3 == 0){
-                        cout << "ERRO: CNPJ inexistente" << endl;
-                    }
-                    break;
-                case 3: //Excluindo funcionario
-                    cout << "Entre CNPJ: ";
-                    cin.ignore();
-                    getline(cin, stringAux1);
-                    for (auto it = listaEmpresas.begin(); it != listaEmpresas.end(); ++it){
-                        aux3 = 0;
-                        if (it -> getCnpj() == stringAux1){
-                            aux3 = 1;                
-                            cout << "Entre CPF: ";
-                            getline(cin, stringAux2);
-                            if(it -> removerFuncionario(stringAux2)){
-                                cout << "ERRO: CPF inexistente" << endl;
-                            }else{
-                                cout << "Funcionario removido com sucesso" << endl;
+                        while(aux3 != 8){
+                            showMenuSecundario();
+                            cin >> aux3;
+                            switch (aux3){                            
+                                case 1: //excluindo empresa                    
+                                    if(removerEmpresa(listaEmpresas, stringAux1)){
+                                        cout << "ERRO: CPNJ inexistente" << endl;
+                                    }else{
+                                        cout << "Empresa removida com sucesso" << endl;
+                                    }
+                                    break;
+                                case 2: //adicionanado funcionario                                                
+                                    cout << "Entre nome: ";
+                                    getline(cin, stringAux2);
+                                    auxFuncionario.setNome(stringAux2);
+                                    cout << "Entre CPF: ";
+                                    getline(cin, stringAux3);
+                                    auxFuncionario.setCpf(stringAux3);
+                                    cout << "Entre salario: ";
+                                    cin >> auxSalario;
+                                    auxFuncionario.setSalario(auxSalario);
+                                    time(&data);
+                                    dataTM = localtime(&data);
+                                    auxFuncionario.setAdmisao(dataTM -> tm_mday, dataTM -> tm_mon+1, dataTM -> tm_year+1900);
+                                    if(it -> adicionarFuncionario(auxFuncionario)){
+                                        cout << "ERRO: CPF ja cadastrado" << endl;
+                                    }else{
+                                        cout << "Funcionario cadastrado com sucesso" << endl;
+                                    }                            
+                                    break;                                           
+                                case 3: //Excluindo funcionario                                                        
+                                    cout << "Entre CPF: ";
+                                    getline(cin, stringAux2);
+                                    if(it -> removerFuncionario(stringAux2)){
+                                        cout << "ERRO: CPF inexistente" << endl;
+                                    }else{
+                                        cout << "Funcionario removido com sucesso" << endl;
+                                    }                            
+                                    break;
+                                case 4://listando todos os funcionarios                                                    
+                                    if(it -> listarTodosFuncionarios()){
+                                        cout << "ERRO: Empresa nao possui funcionarios" << endl;
+                                    }
+                                    break;                        
+                                case 5: //Listar Recentes
+                                    if(it -> listarFuncionariosRecentes() == -1){
+                                        cout << "ERRO: Empresa nao possui funcionarios" << endl;
+                                    }else{
+                                        if(it -> listarFuncionariosRecentes() == 0){
+                                            cout << "Nenhum funcionario recente" << endl;
+                                        }else{
+                                            cout << "Funcionarios Recente:"<<endl;
+                                        }        
+                                    }
+                                    break;
+                                case 6: //Aumentando salario                        
+                                    cout << "Entre aumento (0 a 100): ";
+                                    cin >> auxSalario;                        
+                                    it -> aumentarSalario(auxSalario);
+                                    cout << "Salario aumentado com sucesso" << endl;                                
+                                    break;
+                                case 7: //limpando a tela
+                                    system("clear");
+                                    showMenuCabeca();
+                                    break;
+                                case 8: //Voltando ao Menu anterior
+                                    break;                                
+                                default:
+                                    cout << "ERRO: Opcao invalida" << endl;
+                                    break;
                             }
-                            break;
                         }
+                        break;
                     }
-                    if(aux3 == 0){
-                        cout << "ERRO: CNPJ inexistente" << endl;
-                    }
-                    break;
-                case 4://listando todos os funcionarios
-                    cout << "Entre CNPJ: ";
-                    cin.ignore();
-                    getline(cin, stringAux1);
-                    for (auto it = listaEmpresas.begin(); it != listaEmpresas.end(); ++it){
-                        aux3 = 0;
-                        if(it -> getCnpj() == stringAux1){
-                            aux3 = 1;
-                            if(it -> listarTodosFuncionarios()){
-                                cout << "ERRO: Empresa nao possui funcionarios" << endl;
-                            }
-                            break;
-                        }                               
-                    }
-                    if (aux3 == 0){
-                        cout << "ERRO: CPNJ inexistente" << endl;
-                    }
-                    break;
-                case 5:
-                    //Listar Recentes                
-                    break;
-                case 6:
-                    cout << "Entre CNPJ: ";
-                    cin.ignore();
-                    getline(cin, stringAux1);
-                    cout << "Entre aumento (0 a 100): ";
-                    cin >> auxSalario;
-                    for (auto it = listaEmpresas.begin(); it != listaEmpresas.end(); ++it){
-                        aux3 = 0;
-                        if(it -> getCnpj() == stringAux1){
-                            aux3 = 1;
-                            it -> aumentarSalario(auxSalario);
-                        }
-                    }
-                    break;
-                case 7:
-                    break;
-                default:
-                    cout << "ERRO: Opcao invalida" << endl;
-                    break;
                 }
+                if (aux2 == 0){
+                    cout << "ERRO: CNPJ inexistente" << endl;
+                }        
                 break;
-            case 4:
+            case 4: //limpando tela
                 system("clear");
                 showMenuCabeca();
                 break;
-            case 5:
+            case 5://media de funcionarios por empresa 
+                //ps: falta refinar
+                cout << mediaFuncionarios(listaEmpresas);
+                break;
+            case 6:
                 cout << "Obrigado por usar o programa" << endl;
                 break;
             default:
                 cout << "ERRO: Opcao invalida" << endl;
                 break;
         }
-        if(aux1 == 5){
+        if(aux1 == 6){
             break;
         }else{
             showMenuPrimario();
