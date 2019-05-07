@@ -32,13 +32,15 @@ bool removerEmpresa (vector<empresa> &vector, string cnpj){
     return true;
 }
 double mediaFuncionarios(vector<empresa> &vector){
-    int totalEmpresas = vector.size(), totalFuncionarios = 0;
+    double result, totalEmpresas, totalFuncionarios = 0;
+    totalEmpresas = vector.size();
     for(auto it = vector.begin(); it != vector.end(); ++it){
         totalFuncionarios += it -> getTotalFuncionarios();
     }
     if(totalEmpresas == 0){
         return -1;
     }else{
-        return (totalFuncionarios/totalEmpresas);
+        result = totalFuncionarios/totalEmpresas;
+        return result;
     }
 }

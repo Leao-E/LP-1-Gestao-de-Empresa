@@ -16,7 +16,7 @@ using namespace std;
 int main(){
     time_t data;
     struct tm *dataTM;
-    int aux1, aux2, aux3;
+    int aux1, aux2, aux3, aux4;
     double auxSalario;
     string stringAux1, stringAux2, stringAux3;
     empresa auxEmpresa("NONE", "NONE");
@@ -54,6 +54,7 @@ int main(){
                 break;
             case 3: //Entrando no menu secundario
                 cout << "Entre CNPJ: ";
+                cin.ignore();
                 getline(cin, stringAux1);
                 //checa se a empresa existe no vector listaEmpresas
                 for (auto it = listaEmpresas.begin(); it != listaEmpresas.end(); ++it){
@@ -70,10 +71,12 @@ int main(){
                                         cout << "ERRO: CPNJ inexistente" << endl;
                                     }else{
                                         cout << "Empresa removida com sucesso" << endl;
+                                        aux3 = 8;
                                     }
                                     break;
                                 case 2: //adicionanado funcionario                                                
                                     cout << "Entre nome: ";
+                                    cin.ignore();
                                     getline(cin, stringAux2);
                                     auxFuncionario.setNome(stringAux2);
                                     cout << "Entre CPF: ";
@@ -93,6 +96,7 @@ int main(){
                                     break;                                           
                                 case 3: //Excluindo funcionario                                                        
                                     cout << "Entre CPF: ";
+                                    cin.ignore();
                                     getline(cin, stringAux2);
                                     if(it -> removerFuncionario(stringAux2)){
                                         cout << "ERRO: CPF inexistente" << endl;
@@ -106,21 +110,23 @@ int main(){
                                     }
                                     break;                        
                                 case 5: //Listar Recentes
-                                    if(it -> listarFuncionariosRecentes() == -1){
+                                    if((aux4 = it -> listarFuncionariosRecentes()) == -1){
                                         cout << "ERRO: Empresa nao possui funcionarios" << endl;
                                     }else{
-                                        if(it -> listarFuncionariosRecentes() == 0){
-                                            cout << "Nenhum funcionario recente" << endl;
-                                        }else{
-                                            cout << "Funcionarios Recente:"<<endl;
-                                        }        
+                                        if(aux4 == 0){
+                                            cout << "Nenhum funcionario recente" << endl; 
+                                        }                                     
                                     }
                                     break;
-                                case 6: //Aumentando salario                        
-                                    cout << "Entre aumento (0 a 100): ";
-                                    cin >> auxSalario;                        
-                                    it -> aumentarSalario(auxSalario);
-                                    cout << "Salario aumentado com sucesso" << endl;                                
+                                case 6: //Aumentando salario                                               
+                                    if (it -> getTotalFuncionarios() > 0){
+                                        cout << "Entre aumento (0 a 100): ";
+                                        cin >> auxSalario;                        
+                                        it -> aumentarSalario(auxSalario);
+                                        cout << "Salario aumentado com sucesso" << endl;  
+                                    }else{
+                                        cout << "ERRO: Empresa nao possui funcionarios"<<endl;
+                                    }                                      
                                     break;
                                 case 7: //limpando a tela
                                     system("clear");
@@ -145,8 +151,11 @@ int main(){
                 showMenuCabeca();
                 break;
             case 5://media de funcionarios por empresa 
-                //ps: falta refinar
-                cout << mediaFuncionarios(listaEmpresas);
+                if(mediaFuncionarios(listaEmpresas) == -1){
+                    cout << "ERRO: Nenhuma empresa cadastrada" << endl;
+                }else{
+                    cout << "Media de Funcionarios: " << mediaFuncionarios(listaEmpresas) << endl;
+                }   
                 break;
             case 6:
                 cout << "Obrigado por usar o programa" << endl;
