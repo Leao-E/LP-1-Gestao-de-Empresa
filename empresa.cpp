@@ -1,3 +1,7 @@
+/**
+ * @file empresa.cpp
+ * @brief Aquivo contendo a implementação dos metodos do arquivo "empresa.h"
+*/
 #include "empresa.h"
 
 //implementando metodos 

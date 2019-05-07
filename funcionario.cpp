@@ -1,3 +1,7 @@
+/**
+ * @file funcionario.cpp
+ * @brief Aquivo contendo a implementação dos metodos do arquivo "funcionario.h"
+*/
 #include "funcionario.h"
 
 //implementação dos metodos

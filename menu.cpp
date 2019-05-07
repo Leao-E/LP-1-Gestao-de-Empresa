@@ -1,3 +1,7 @@
+/**
+ * @file menu.cpp
+ * @brief Aquivo contendo a implementação das funções do arquivo "menu.h"
+*/
 #include "menu.h"
 
 void showMenuCabeca(){

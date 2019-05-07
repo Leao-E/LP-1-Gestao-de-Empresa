@@ -1,3 +1,7 @@
+/**
+ * @file funcoesGerencia.cpp
+ * @brief Aquivo contendo a implementação das funções do arquivo "funcoesGerencia.h"
+*/
 #include "funcoesGerencia.h"
 
 bool adicionarEmpresa (vector<empresa> &vector, empresa A){

@@ -1,3 +1,7 @@
+/**
+ * @file funcionario.h
+ * @brief Arquivo contendo a declaração da classe funcionario e todos os seus metodos
+*/
 #ifndef _FUNCIONARIO_H_
 #define _FUNCIONARIO_H_
 
@@ -7,6 +11,9 @@
 
 using namespace std;
 
+/**
+ * @brief Struct utilizada para armazenar a data de admissão do funcionario
+*/
 typedef struct ADMISAO
 {
     int dia;
