@@ -135,7 +135,7 @@ int main(){
                                 case 8: //Voltando ao Menu anterior
                                     break;                                
                                 default:
-                                    cout << "ERRO: Opcao invalida" << endl;
+                                    cout << "ERRO: Opcao invalida" << endl;                                    
                                     break;
                             }
                         }
@@ -161,7 +161,7 @@ int main(){
                 cout << "Obrigado por usar o programa" << endl;
                 break;
             default:
-                cout << "ERRO: Opcao invalida" << endl;
+                cout << "ERRO: Opcao invalida" << endl;            
                 break;
         }
         if(aux1 == 6){
